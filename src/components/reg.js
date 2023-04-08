@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import '../App.css'
 import { useCookies } from "react-cookie"; 
 import { useNavigate } from "react-router-dom";
+import { FloatingLabel } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 export default function Reg(){
     const[name, setname] = useState('')
@@ -122,12 +124,26 @@ export default function Reg(){
         <div className="reg1">
             { !(resStatus===201) &&
             <div className="reg">
-                <input type='text' onChange={getusername} placeholder='Username' value={name}/>
+                {/* <input type='text' onChange={getusername} placeholder='Username' value={name}/>
                 {resStatus===400 && <p className="errormsg">{response.username}</p>}
                 <input type='password' onChange={getpassword} placeholder='Password' value={password} />
                 {resStatus===400 && <p className="errormsg">{response.password}</p>}
+                <button onClick={but}>Next</button> */}
+                <>
+                <FloatingLabel
+                    controlId="floatingInput"
+                    label="User name"
+                    className="mb-3"
+                >
+                    <Form.Control type="text" placeholder="name@example.com" onChange={getusername} value={name} />
+                </FloatingLabel>
+                <FloatingLabel controlId="floatingPassword" label="Password">
+                    <Form.Control type="password" placeholder="Password" onChange={getpassword} value={password}/>
+                </FloatingLabel>
+                </>
                 <button onClick={but}>Next</button>
-            </div>}
+                </div>
+            }
             {resStatus===201 &&
             <div className="reg">
                 <input type='text' onChange={getemail} placeholder='Email' value={emailid}/>

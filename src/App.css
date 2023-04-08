@@ -497,47 +497,29 @@ border-radius: 1rem;
    
     margin-left: 10%;
   }}
-
-.reg{
-  display: grid;
-  margin: 10rem;
-  gap: 2rem;
-  padding-left: 5rem;
-  padding-top: 5rem;
-  padding-right: 5rem;
-  background: #f7f3f3;
-  filter: drop-shadow(0 0 1rem rgb(99, 100, 103));
+@media screen and (min-width: 769px){
+  .reg{
+    margin: 3% 0% 3% 0%;
+    display: grid;
+    padding: 5%;
+    gap: 4%; 
+  }
 }
 
-.reg:hover{
-  transform: scale(1.1, 1.1);
-  filter: drop-shadow(0 0 1rem rgb(113, 145, 241));
+@media screen and (max-width: 769px){
+  .reg{
+    margin: 3% 0% 3% 0%;
+    display: grid;
+    padding: 5%;
+    gap: 4%; 
+  }
 }
 
-.reg > input{
-  height: 4rem;
-  border-radius: 0.5rem;
-  font-size: 2rem;
-  padding: 2rem;
-}
 
-.reg > input:hover{
-  border-color: rgb(93, 178, 239);
-  transform: scale(1.02, 1.05)
-}
 
-.reg > button{
-  height : 3rem;
-  margin-left: 70rem;
-  margin-bottom: 0rem;
-  border-radius: 1rem; 
-  border-color :transparent;
-  background: linear-gradient(rgb(247, 247, 130), rgb(93, 251, 93));
-  font-size: 1.5rem;
-}
-.reg > button:hover{
-  transform: scale(1.1, 1.1)
-}
+
+
+
 
 .errormsg{
   color: rgb(249, 43, 43);

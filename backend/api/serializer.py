@@ -4,9 +4,11 @@ from .models import ngo
 from rest_framework.authtoken.views import Token
 
 class ngoSerializer (serializers.ModelSerializer) :
-	class Meta :
-		model = ngo
-		fields = ['id', 'title', 'description', 'owner', 'email', 'aim', 'coverimg', 'img1', 'img2', 'img3', 'username']
+    coverimg = serializers.ImageField(required=True)
+
+    class Meta :
+        model = ngo
+        fields = ['id', 'title', 'description', 'owner', 'email', 'aim', 'coverimg', 'img1', 'img2', 'img3', 'username']
 
 class UserSerializer (serializers.ModelSerializer) :
     class Meta :

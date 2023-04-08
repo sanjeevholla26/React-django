@@ -25,7 +25,8 @@ export default function Createngo(){
             setaim(event.target.value)
         }
         function getimg(event){
-            setimg(event.target.value)
+            setimg((event.target.files[0]));
+            console.log(img)
         }
         function getname(event){
             setownername(event.target.value)
@@ -38,11 +39,20 @@ export default function Createngo(){
         }
 
         function createngo(){
+            const formdata = new FormData();
+            formdata.append('coverimg', img);
+            formdata.append('username', ownername);
+            formdata.append('title', title);
+            formdata.append('aim', aim);
+            formdata.append('owner', tokenid['myid']);
+            formdata.append('description', description);
+            formdata.append('email', email);
+
             fetch(`http://127.0.0.1:8000/ngo-list/`, {
         method: 'POST',
-        headers: {  'Content-Type': 'application/json',
+        headers: {
                     'Authorization' : `Token ${tokenid['mytoken']}` },
-        body: JSON.stringify({ username:`${ownername}`, title: title, coverimg: img, aim: aim, owner: tokenid['myid'], description: description, email: email})
+        body: formdata//JSON.stringify({ username:`${ownername}`, title: title, coverimg: img, aim: aim, owner: tokenid['myid'], description: description, email: email})
     })
     .then(res => {
         setresStatus(res.status)
@@ -68,7 +78,7 @@ export default function Createngo(){
                     {resStatus===400 && res.username && <p>*{res.username}</p>}
                     <input type='email' placeholder="Email-Id" onChange={getemail} value={email} />
                     {resStatus===400 && res.email && <p>*{res.email}</p>}
-                    <input type='text' placeholder="Cover-Image" onChange={getimg} value={img}/>
+                    <input type='file'  onChange={getimg} />
                     <textarea placeholder="Full Discription of Ur NGO" onChange={getdescription} value={description}/>
                     {resStatus===400 && res.description && <p>*{res.description}</p>}
                     <button onClick={createngo}>SUBMIT</button>
